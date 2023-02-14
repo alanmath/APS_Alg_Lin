@@ -1,16 +1,22 @@
 import pygame
 
 ## class of the target sprite Elephant
-class Elephant(pygame.sprite.Sprite):
-    def __init__(self, screen, x, y):
-        pygame.sprite.Sprite.__init__(self)
-        self.screen = screen
-        self.image = pygame.image.load("sprites/elephant.png")
-        self.rect = self.image.get_rect()
-        self.rect.x = x
-        self.rect.y = y
+class Elefante:
+    lista = []
 
-    def update(self):
-        self.screen.blit(self.image, self.rect)
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        self.radius = 15
+        Elefante.lista.append(self)
+    
+    @classmethod
+    def draw(cls, screen):
+        for elefante in Elefante.lista:
+            pygame.draw.circle(screen, (0, 255, 0), (elefante.x, elefante.y), elefante.radius)
 
-        
+    @classmethod
+    def delete(cls, elefante):
+        Elefante.lista.remove(elefante)
+
+

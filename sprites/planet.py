@@ -1,8 +1,12 @@
 from sprites.corpoCeleste import CorpoCeleste
+import pygame
 
 class Planeta(CorpoCeleste):
+    lista = []
+
     def __init__(self, x, y, massa):
         super().__init__(x, y, massa)
+        Planeta.lista.append(self)
     
     def atualiza_aceleracao(self, planetas):
         # Calcular a aceleração resultante devido à atração gravitacional dos outros planetas
@@ -16,3 +20,8 @@ class Planeta(CorpoCeleste):
                 f = self.massa * planeta.massa / dist**2
                 self.ax += f * dx / dist
                 self.ay += f * dy / dist
+
+    @classmethod
+    def draw(cls, screen):
+        for planeta in Planeta.lista:
+            pygame.draw.circle(screen, (255, 255, 255), (planeta.x, planeta.y), 10)
