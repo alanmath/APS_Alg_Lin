@@ -1,5 +1,5 @@
-WIDTH = 480
-HEIGHT = 600
+WIDTH = 1600
+HEIGHT = 900
 FPS = 60
 
 # define colors
