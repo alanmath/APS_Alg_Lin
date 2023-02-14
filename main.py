@@ -45,8 +45,37 @@ class Jogo:
         Elefante.draw(screen)
         self.cobra.draw(screen)
 
+    def menu_screen(self):
+        font = pygame.font.Font(None, 36)
+        start_text = font.render("Start", True, WHITE)
+        settings_text = font.render("Settings", True, WHITE)
+        endless_text = font.render("Endless Mode", True, WHITE)
+        start_rect = start_text.get_rect(center=(WIDTH/2, 200))
+        settings_rect = settings_text.get_rect(center=(WIDTH/2, 250))
+        endless_rect = endless_text.get_rect(center=(WIDTH/2, 300))
+
+        while True:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                if event.type == pygame.MOUSEBUTTONUP:
+                    pos = pygame.mouse.get_pos()
+                    if start_rect.collidepoint(pos):
+                        return "start"
+                    elif settings_rect.collidepoint(pos):
+                        return "settings"
+                    elif endless_rect.collidepoint(pos):
+                        return "endless"
+            
+            screen.fill(BLACK)
+            screen.blit(start_text, start_rect)
+            screen.blit(settings_text, settings_rect)
+            screen.blit(endless_text, endless_rect)
+            pygame.display.update()
+
         
 jogo = Jogo(cobra=Cobra(100, 100, 10, vx=10, vy=10), planetas=[Planeta(200, 200, 10000), Planeta(100, 500, 500000), Planeta(300, 300, 1500)], elefante=Elefante(random.randint(0, WIDTH), random.randint(0, HEIGHT)))
+jogo.menu_screen()
 
 while True:
     clock.tick(FPS)
