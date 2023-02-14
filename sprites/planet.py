@@ -1,4 +1,4 @@
-from corpoCeleste import CorpoCeleste
+from sprites.corpoCeleste import CorpoCeleste
 
 class Planeta(CorpoCeleste):
     def __init__(self, x, y, massa):

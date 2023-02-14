@@ -11,8 +11,9 @@ class Snake(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
-        self.change_x = 0
-        self.change_y = 0
+        self.change_x = 5
+        self.change_y = 5
+        Snake.Snakes.append(self)
 
     def changespeed(self, x, y):
         self.change_x += x

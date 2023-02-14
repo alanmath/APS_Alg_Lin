@@ -2,6 +2,7 @@ import pygame
 import random
 from sprites.snake import Snake
 from constants import *
+from sprites.planet import Planeta
 
 
 pygame.init()
@@ -72,6 +73,7 @@ jogo = Jogo(cobra, planetas)
 
 # Game loop
 running = True
+snake = Snake(100, 100, 10, 10, GREEN)
 while running:
     # keep loop running at the right speed
     clock.tick(FPS)
@@ -83,6 +85,8 @@ while running:
 
     # Update game state
     jogo.atualiza_jogo(1/FPS)
+    # Update
+    snake.update()
 
     # Draw / render
     screen.fill(BLACK)
@@ -90,6 +94,7 @@ while running:
         pygame.draw.circle(screen, WHITE, (int(planeta.x), int(planeta.y)), 10)
     cobra.draw(screen)
 
+    snake.draw(screen)
     # *after* drawing everything, flip the display
     pygame.display.flip()
 
