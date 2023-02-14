@@ -11,7 +11,7 @@ clock = pygame.time.Clock()
 
 # Game loop
 running = True
-
+snake = Snake(100, 100, 10, 10, GREEN)
 while running:
     # keep loop running at the right speed
     clock.tick(FPS)
@@ -22,10 +22,11 @@ while running:
             running = False
 
     # Update
+    snake.update()
 
     # Draw / render
     screen.fill(BLACK)
-
+    snake.draw(screen)
     # *after* drawing everything, flip the display
     pygame.display.flip()
 
