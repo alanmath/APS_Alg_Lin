@@ -17,9 +17,9 @@ class Canhao():
     def update(self):
         keys = pygame.key.get_pressed()
         if keys[pygame.K_LEFT]:
-            self.angle += 5 
+            self.angle -= 2.5 
         elif keys[pygame.K_RIGHT]:
-            self.angle -= 5
+            self.angle += 2.5
         if keys[pygame.K_SPACE]:
             # Shoot cobra with given angle and velocity
             cobra_velocity = (self.velocity * math.cos(math.radians(self.angle)), self.velocity * math.sin(math.radians(self.angle)))

@@ -6,6 +6,7 @@ from sprites.snake import Cobra
 from sprites.elephant import Elefante
 from fases import *
 from sprites.cannon import Canhao
+from sprites.wormhole import Wormhole
 
 pygame.init()
 pygame.mixer.init()
@@ -24,8 +25,11 @@ class Jogo:
         for valores in p_fases[self.phase-1]:
             Planeta(valores)
         Elefante(random.randint(0, WIDTH), random.randint(0, HEIGHT))
+        for valores in w_fases[self.phase-1]:
+            Wormhole(valores)
     
     def atualiza_jogo(self, delta_t):
+        
 
         for cobra in Cobra.lista:
             cobra.atualiza_velocidade_posicao(Planeta.lista, delta_t)
@@ -41,12 +45,19 @@ class Jogo:
                     Planeta(valores)
                 Elefante.delete_all()
                 Elefante(random.randint(0, WIDTH), random.randint(0, HEIGHT))
+                Wormhole.delete_all()
+                for valores in w_fases[self.phase-1]:
+                    Wormhole(valores)  
+        
+        # Verificar colisão com o wormhole
+        Wormhole.teletransport()
 
     def draw(self, screen):
         screen.fill(BLACK)
         Planeta.draw(screen)
         Elefante.draw(screen)
         Cobra.draw(screen)
+        Wormhole.draw(screen)
         self.canhao.draw(screen)
 
     def menu_screen(self):

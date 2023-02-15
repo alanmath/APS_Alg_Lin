@@ -1,5 +1,5 @@
 import pygame
-
+from constants import *
 
 class Cobra:
     lista = []
@@ -10,6 +10,7 @@ class Cobra:
         self.massa = massa
         self.vx = vx
         self.vy = vy
+        self.rect = pygame.Rect(self.x, self.y, SNAKE_WIDTH, SNAKE_HEIGHT)
         Cobra.lista.append(self)
     
     def atualiza_velocidade_posicao(self, planetas, delta_t):
@@ -32,10 +33,17 @@ class Cobra:
         self.x += self.vx * delta_t
         self.y += self.vy * delta_t
 
+        self.rect = pygame.Rect(self.x, self.y, SNAKE_WIDTH, SNAKE_HEIGHT)
+
+    def transportar(self, pos):
+        self.x = pos[0]
+        self.y = pos[1]
+        self.rect = pygame.Rect(self.x, self.y, SNAKE_WIDTH, SNAKE_HEIGHT)
+
     @classmethod
     def draw(cls, screen):
         for cobra in Cobra.lista:
-            pygame.draw.rect(screen, (255, 0, 0), (cobra.x, cobra.y, 10, 10))
+            pygame.draw.rect(screen, (255, 0, 0), cobra.rect)
 
     @classmethod
     def delete(cls, cobra):
