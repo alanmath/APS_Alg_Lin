@@ -1,4 +1,5 @@
 import pygame
+from constants import *
 
 ## class of the target sprite Elephant
 class Elefante:
@@ -7,7 +8,7 @@ class Elefante:
     def __init__(self, x, y):
         self.x = x
         self.y = y
-        self.radius = 15
+        self.radius = ELEPHANT_RADIUS
         Elefante.lista.append(self)
 
     def verifica_colisao(self, cobras):
@@ -26,7 +27,7 @@ class Elefante:
     @classmethod
     def draw(cls, screen):
         for elefante in Elefante.lista:
-            pygame.draw.circle(screen, (0, 255, 0), (elefante.x, elefante.y), elefante.radius)
+            pygame.draw.circle(screen, ELEPHANT_COLOR, (elefante.x, elefante.y), elefante.radius)
 
     @classmethod
     def delete(cls, elefante):
