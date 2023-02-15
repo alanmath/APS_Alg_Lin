@@ -14,12 +14,11 @@ class Canhao():
         self.angle = 0
         self.velocity = 1000
         self.last_space_press_time = 0
-        self.barra_carregamento = pygame.Surface((100, 10))
+        self.barra_carregamento = pygame.Surface((30, 10))
         self.barra_carregamento.fill(RED)
         self.rect_barra = self.barra_carregamento.get_rect()
         self.rect_barra.center = (WIDTH/2, HEIGHT-50)
         self.shoot = False
-        self.time_since_press = 0
     
     def update(self):
         keys = pygame.key.get_pressed()
@@ -44,15 +43,14 @@ class Canhao():
         
     def update_bara(self):
         if self.shoot:
-        
             current_time = pygame.time.get_ticks()
-            self.time_since_press = current_time - self.last_space_press_time
-            self.barra_carregamento = pygame.Surface((self.time_since_press/5, 10))
+            time_since_press = current_time - self.last_space_press_time
+            self.barra_carregamento = pygame.Surface((max(30, min(130, time_since_press/10)), 10))
             self.barra_carregamento.fill(RED)
             self.rect_barra = self.barra_carregamento.get_rect()
             self.rect_barra.center = (WIDTH/2, HEIGHT-50)
         else:
-            self.barra_carregamento = pygame.Surface((100, 10))
+            self.barra_carregamento = pygame.Surface((30, 10))
             self.barra_carregamento.fill(RED)
             self.rect_barra = self.barra_carregamento.get_rect()
             self.rect_barra.center = (WIDTH/2, HEIGHT-50)
