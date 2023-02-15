@@ -4,6 +4,7 @@ from constants import *
 from sprites.planet import Planeta
 from sprites.snake import Cobra
 from sprites.elephant import Elefante
+from fases import *
 
 pygame.init()
 pygame.mixer.init()
@@ -13,37 +14,36 @@ clock = pygame.time.Clock()
 
 
 class Jogo:
-    def __init__(self, cobra, planetas, elefante):
-        self.cobra = cobra
-        self.planetas = planetas
-        self.elefante = elefante
+    def __init__(self):
         self.score = 0
         self.phase = 1
+
+    def start(self):
+        for valores in p_fases[self.phase-1]:
+            Planeta(valores)
+        Elefante(random.randint(0, WIDTH), random.randint(0, HEIGHT))
     
     def atualiza_jogo(self, delta_t):
-        for planeta in self.planetas:
-            planeta.atualiza_aceleracao(self.planetas)
-        
-        self.cobra.atualiza_velocidade_posicao(self.planetas, delta_t)
+        for cobra in Cobra.lista:
+            cobra.atualiza_velocidade_posicao(Planeta.lista, delta_t)
         
         # Verificar colisão com o elefante
-        dx = self.elefante.x - self.cobra.x
-        dy = self.elefante.y - self.cobra.y
-        dist = ((dx**2 + dy**2)**0.5)
-        if dist < self.elefante.radius:
-            # Incrementar a pontuação e avançar para a próxima fase
-            self.score += 1
-            self.phase += 1
-            self.cobra = Cobra(100, 100, 10, vx=10, vy=10)
-            self.planetas = [Planeta(200, 200, 10000), Planeta(100, 500, 500000), Planeta(300, 300, 1500)]
-            Elefante.delete(self.elefante)
-            self.elefante = Elefante(random.randint(0, WIDTH), random.randint(0, HEIGHT))
+        for elefante in Elefante.lista:
+            if elefante.verifica_colisao(Cobra.lista):
+                # Incrementar a pontuação e avançar para a próxima fase
+                self.score += 1
+                self.phase += 1
+                Planeta.delete_all()
+                for valores in p_fases[self.phase-1]:
+                    Planeta(valores)
+                Elefante.delete_all()
+                Elefante(random.randint(0, WIDTH), random.randint(0, HEIGHT))
 
     def draw(self, screen):
         screen.fill(BLACK)
         Planeta.draw(screen)
         Elefante.draw(screen)
-        self.cobra.draw(screen)
+        Cobra.draw(screen)
 
     def menu_screen(self):
         font = pygame.font.Font(None, 36)
@@ -74,8 +74,9 @@ class Jogo:
             pygame.display.update()
 
         
-jogo = Jogo(cobra=Cobra(100, 100, 10, vx=10, vy=10), planetas=[Planeta(200, 200, 10000), Planeta(100, 500, 500000), Planeta(300, 300, 1500)], elefante=Elefante(random.randint(0, WIDTH), random.randint(0, HEIGHT)))
+jogo = Jogo()
 jogo.menu_screen()
+jogo.start()
 
 while True:
     clock.tick(FPS)
