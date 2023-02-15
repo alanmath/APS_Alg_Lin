@@ -23,6 +23,8 @@ while True:
             # Atualizar o jogo
                 if event.type == pygame.KEYDOWN:
                     jogo.canhao.update()
+                if event.type == pygame.KEYUP:
+                    jogo.canhao.release()
 
             jogo.atualiza_jogo(delta_t=1/FPS)
             

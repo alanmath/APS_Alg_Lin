@@ -17,7 +17,9 @@ class Canhao():
         self.barra_carregamento = pygame.Surface((100, 10))
         self.barra_carregamento.fill(RED)
         self.rect_barra = self.barra_carregamento.get_rect()
-        self.rect_barra.center = (x, y + 50)
+        self.rect_barra.center = (WIDTH/2, HEIGHT-50)
+        self.shoot = False
+        self.time_since_press = 0
     
     def update(self):
         keys = pygame.key.get_pressed()
@@ -26,21 +28,34 @@ class Canhao():
         elif keys[pygame.K_RIGHT]:
             self.angle += 2.5
         elif keys[pygame.K_SPACE]:
-            # Shoot cobra with given angle and velocity
-            current_time = pygame.time.get_ticks()
-            time_since_press = current_time - self.last_space_press_time
+            if self.shoot:
+                # Shoot cobra with given angle and velocity
+                current_time = pygame.time.get_ticks()
+                time_since_press = current_time - self.last_space_press_time
 
-            # Calculate velocity based on time held down
-            self.velocity = max(0, min(1000, time_since_press * 2))
-            self.update_barra(self.velocity/10)
-            cobra_velocity = (self.velocity * math.cos(math.radians(self.angle)), self.velocity * math.sin(math.radians(self.angle)))
-            Cobra(self.rect.centerx, self.rect.centery, 10, vx=cobra_velocity[0], vy=cobra_velocity[1])
-    
-    def update_barra(self, percentage):
-        self.barra_carregamento = pygame.Surface((percentage, 10))
-        self.barra_carregamento.fill(RED)
-        self.rect_barra = self.barra_carregamento.get_rect()
-        self.rect_barra.center = (self.rect.centerx, self.rect.centery + 50)
+                # Calculate velocity based on time held down
+                self.velocity = max(0, min(1000, time_since_press * 2))
+                
+                cobra_velocity = (self.velocity * math.cos(math.radians(self.angle)), self.velocity * math.sin(math.radians(self.angle)))
+                Cobra(self.rect.centerx, self.rect.centery, 10, vx=cobra_velocity[0], vy=cobra_velocity[1])
+                self.shoot = False
+            else: 
+                self.shoot = True
+        
+    def update_bara(self):
+        if self.shoot:
+        
+            current_time = pygame.time.get_ticks()
+            self.time_since_press = current_time - self.last_space_press_time
+            self.barra_carregamento = pygame.Surface((self.time_since_press/5, 10))
+            self.barra_carregamento.fill(RED)
+            self.rect_barra = self.barra_carregamento.get_rect()
+            self.rect_barra.center = (WIDTH/2, HEIGHT-50)
+        else:
+            self.barra_carregamento = pygame.Surface((100, 10))
+            self.barra_carregamento.fill(RED)
+            self.rect_barra = self.barra_carregamento.get_rect()
+            self.rect_barra.center = (WIDTH/2, HEIGHT-50)
 
     def release(self):
         self.last_space_press_time = pygame.time.get_ticks()
@@ -48,4 +63,5 @@ class Canhao():
     def draw(self, screen):
         # self.image = pygame.transform.rotate(self.image, self.angle)
         screen.blit(self.image, self.rect)
+        self.update_bara()
         screen.blit(self.barra_carregamento, self.rect_barra)
