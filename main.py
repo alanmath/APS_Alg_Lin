@@ -5,6 +5,7 @@ from sprites.planet import Planeta
 from sprites.snake import Cobra
 from sprites.elephant import Elefante
 from fases import *
+from sprites.cannon import Canhao
 
 pygame.init()
 pygame.mixer.init()
@@ -17,6 +18,7 @@ class Jogo:
     def __init__(self):
         self.score = 0
         self.phase = 1
+        self.canhao = Canhao(30, HEIGHT-40)
 
     def start(self):
         for valores in p_fases[self.phase-1]:
@@ -24,6 +26,7 @@ class Jogo:
         Elefante(random.randint(0, WIDTH), random.randint(0, HEIGHT))
     
     def atualiza_jogo(self, delta_t):
+
         for cobra in Cobra.lista:
             cobra.atualiza_velocidade_posicao(Planeta.lista, delta_t)
         
@@ -44,6 +47,7 @@ class Jogo:
         Planeta.draw(screen)
         Elefante.draw(screen)
         Cobra.draw(screen)
+        self.canhao.draw(screen)
 
     def menu_screen(self):
         font = pygame.font.Font(None, 36)
@@ -83,8 +87,10 @@ while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
-    
     # Atualizar o jogo
+        if event.type == pygame.KEYDOWN:
+            jogo.canhao.update()
+
     jogo.atualiza_jogo(delta_t=1/FPS)
     
     # Desenhar o jogo
