@@ -124,7 +124,7 @@ class Jogo:
         
 
     # Define the settings page function
-    def settings(self):
+    def settings(self):  ## Revisar essa seção inteira ##
         # Set up the font
         font = pygame.font.SysFont('Arial', 36)
 
