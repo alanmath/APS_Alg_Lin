@@ -7,59 +7,61 @@ import math
 class Canhao():
     def __init__(self, x, y):
         super().__init__()
-        self.image = pygame.Surface((10, 30))
+        self.image = pygame.Surface((20, 30))
         self.image.fill(GREEN)
+
         self.rect = self.image.get_rect()
-        self.rect.center = (x, y)
-        self.angle = 0
-        self.velocity = 1000
-        self.last_space_press_time = 0
-        self.barra_carregamento = pygame.Surface((30, 10))
-        self.barra_carregamento.fill(RED)
-        self.rect_barra = self.barra_carregamento.get_rect()
-        self.rect_barra.center = (WIDTH/2, HEIGHT-50)
         self.shoot = False
-    
-    def update(self):
-        keys = pygame.key.get_pressed()
-        if keys[pygame.K_LEFT]:
-            self.angle -= 2.5 
-        elif keys[pygame.K_RIGHT]:
-            self.angle += 2.5
-        elif keys[pygame.K_SPACE]:
-            if self.shoot:
-                # Shoot cobra with given angle and velocity
-                current_time = pygame.time.get_ticks()
-                time_since_press = current_time - self.last_space_press_time
-
-                # Calculate velocity based on time held down
-                self.velocity = max(0, min(1000, time_since_press * 2))
-                
-                cobra_velocity = (self.velocity * math.cos(math.radians(self.angle)), self.velocity * math.sin(math.radians(self.angle)))
-                Cobra(self.rect.centerx, self.rect.centery, 10, vx=cobra_velocity[0], vy=cobra_velocity[1])
-                self.shoot = False
-            else: 
-                self.shoot = True
         
-    def update_bara(self):
-        if self.shoot:
-            current_time = pygame.time.get_ticks()
-            time_since_press = current_time - self.last_space_press_time
-            self.barra_carregamento = pygame.Surface((max(30, min(130, time_since_press/10)), 10))
-            self.barra_carregamento.fill(RED)
-            self.rect_barra = self.barra_carregamento.get_rect()
-            self.rect_barra.center = (WIDTH/2, HEIGHT-50)
-        else:
-            self.barra_carregamento = pygame.Surface((30, 10))
-            self.barra_carregamento.fill(RED)
-            self.rect_barra = self.barra_carregamento.get_rect()
-            self.rect_barra.center = (WIDTH/2, HEIGHT-50)
 
-    def release(self):
-        self.last_space_press_time = pygame.time.get_ticks()
+        #alterações de alan - linha vetorizada
+        self.line_color = (255, 255, 255)
+        self.line_width = 5
+        self.line_length = 50
+
+        self.pulled_back = False
+        self.start_pos = [0,0]
+        self.speed = [0,0]
+        # Cria uma linha horizontal
+        self.line_image = pygame.Surface((self.line_length, self.line_width))
+        self.line_image.fill(self.line_color)
+    
+    def update_cannon_down(self):
+        # verify if mouse button was pressed
+        self.pulled_back = True
+        self.start_pos = pygame.mouse.get_pos()
+
+
+                
+    def update_cannon_up(self):
+        end_pos = pygame.mouse.get_pos()
+        # calcula a distância entre os pontos
+        distance = ((end_pos[0] - self.start_pos[0])**2 + (end_pos[1] - self.start_pos[1])**2)**0.5
+        # calcula o ângulo entre o ponto inicial e final
+        angle = math.atan2(end_pos[1] - self.start_pos[1], end_pos[0] - self.start_pos[0])
+        # define a força do lançamento com base na distância
+        force = min(distance, 1000)
+        # define a velocidade do objeto com base na força e ângulo
+        self.speed[0] = force * math.cos(angle)*(-1)
+        self.speed[1] = force * math.sin(angle)*(-1)
+        self.pulled_back = False
+        Cobra(50, 500, 10, vx=self.speed[0], vy=self.speed[1])
+
+
+    def update_cannon_motion(self):
+        self.mouse_pos = pygame.mouse.get_pos()
+
+
+        
+    def pulled(self, screen):
+        if self.pulled_back:
+            mouse_pos = pygame.mouse.get_pos()
+            distance_to_color = min(((mouse_pos[0] - self.start_pos[0])**2 + (mouse_pos[1] - self.start_pos[1])**2)**0.5,255)
+            print(distance_to_color, "distance_to_color uuuuuuuuuu")
+            pygame.draw.line(screen, (0+distance_to_color, 255-distance_to_color, 0), self.start_pos, mouse_pos, 2)
+            
 
     def draw(self, screen):
-        # self.image = pygame.transform.rotate(self.image, self.angle)
-        screen.blit(self.image, self.rect)
-        self.update_bara()
-        screen.blit(self.barra_carregamento, self.rect_barra)
+
+        # blit an image of the image on the screen on the position 50, 500
+        screen.blit(self.image, (50, 500))

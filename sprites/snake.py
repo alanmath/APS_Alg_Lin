@@ -32,6 +32,8 @@ class Cobra:
         # Atualizar a posição da cobra
         self.x += self.vx * delta_t
         self.y += self.vy * delta_t
+        
+        
 
         self.rect = pygame.Rect(self.x, self.y, SNAKE_WIDTH, SNAKE_HEIGHT)
 

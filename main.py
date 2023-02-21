@@ -21,16 +21,19 @@ while True:
                 if event.type == pygame.QUIT:
                     pygame.quit()
             # Atualizar o jogo
-                if event.type == pygame.KEYDOWN:
-                    jogo.canhao.update()
-                if event.type == pygame.KEYUP:
-                    jogo.canhao.release()
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    jogo.canhao.update_cannon_down()
+                elif event.type == pygame.MOUSEBUTTONUP:
+                    jogo.canhao.update_cannon_up()
+                elif event.type == pygame.MOUSEMOTION:
+                    jogo.canhao.update_cannon_motion()
 
             jogo.atualiza_jogo(delta_t=1/FPS)
             
             # Desenhar o jogo
             jogo.draw()
-            
+            jogo.canhao.pulled(screen)
+
             pygame.display.update()
 
     elif retorno_menu == "endless":
