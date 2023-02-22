@@ -6,9 +6,9 @@ from sprites.snake import Cobra
 class Elefante:
     lista = []
 
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
+    def __init__(self, pos):
+        self.x = pos[0]
+        self.y = pos[1]
         self.radius = ELEPHANT_RADIUS
         Elefante.lista.append(self)
 

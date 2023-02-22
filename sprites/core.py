@@ -31,9 +31,10 @@ class Core:
                     return True
         return False
                     #call the function game_over
-                    
 
-        
+    @classmethod           
+    def incrementa_vidas(self):
+        self.conta_vidas += 1     
 
     @classmethod
     def draw(cls,screen):
