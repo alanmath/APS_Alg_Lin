@@ -11,7 +11,14 @@ class Cobra:
         self.vx = vx
         self.vy = vy
         self.rect = pygame.Rect(self.x, self.y, SNAKE_WIDTH, SNAKE_HEIGHT)
+        
+        
+        
+        # verify if 
         Cobra.lista.append(self)
+
+
+    
     
     def atualiza_velocidade_posicao(self, planetas, delta_t):
         # Calcular a aceleração resultante devido à atração gravitacional dos planetas

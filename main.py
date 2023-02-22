@@ -1,12 +1,18 @@
 import pygame
 from game import Jogo
 from constants import *
+from sprites.core import Core
 
 pygame.init()
 pygame.mixer.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("SnakeHat")
 clock = pygame.time.Clock()
+
+#carregar algumas imagens aqui
+#carregar imagens aqui
+
+
 
         
 jogo = Jogo(screen)
@@ -32,7 +38,14 @@ while True:
             
             # Desenhar o jogo
             jogo.draw()
+            # Desenhar linha de força
             jogo.canhao.pulled(screen)
+            
+            if Core.update_vidas():
+                jogo.end_game_screen()
+
+            #desenhar coracoes
+            
 
             pygame.display.update()
 

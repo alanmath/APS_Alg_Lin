@@ -1,5 +1,6 @@
 import pygame
 from constants import *
+from sprites.snake import Cobra
 
 ## class of the target sprite Elephant
 class Elefante:
@@ -17,6 +18,7 @@ class Elefante:
             dy = self.y - cobra.y
             dist = ((dx**2 + dy**2)**0.5)
             if dist < self.radius:
+                Cobra.delete(cobra)
                 return True
         return False
 

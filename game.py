@@ -7,6 +7,7 @@ from sprites.elephant import Elefante
 from fases import *
 from sprites.cannon import Canhao
 from sprites.wormhole import Wormhole
+from sprites.core import Core
 
 class Jogo:
     def __init__(self, screen):
@@ -50,7 +51,39 @@ class Jogo:
         Elefante.draw(self.screen)
         Cobra.draw(self.screen)
         Wormhole.draw(self.screen)
+        
         self.canhao.draw(self.screen)
+
+
+        if Core.draw(self.screen):
+            self.end_game_screen()
+        
+
+
+    def end_game_screen(self):
+        font = pygame.font.Font(None, 36)
+        text_lose = font.render("Game Over", True, WHITE)
+        text_win = font.render("You Win", True, WHITE)
+        
+        text_rect = text_win.get_rect(center=(WIDTH/2, 200))
+        
+        if Core.conta_vidas <5:
+            while True:
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        pygame.quit()
+                self.screen.fill(BLACK)
+                self.screen.blit(text_win, text_rect)
+                pygame.display.update()
+        else:
+            while True:
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        pygame.quit()
+                self.screen.fill(BLACK)
+                self.screen.blit(text_lose, text_rect)
+                pygame.display.update()
+
 
     def menu_screen(self):
         font = pygame.font.Font(None, 36)
