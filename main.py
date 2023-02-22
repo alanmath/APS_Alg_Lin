@@ -12,8 +12,6 @@ clock = pygame.time.Clock()
 #carregar algumas imagens aqui
 #carregar imagens aqui
 
-
-
         
 jogo = Jogo(screen)
 while True:
