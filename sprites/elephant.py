@@ -10,6 +10,7 @@ class Elefante:
         self.x = pos[0]
         self.y = pos[1]
         self.radius = ELEPHANT_RADIUS
+        self.image = ELEPHANT_IMAGE
         Elefante.lista.append(self)
 
     def verifica_colisao(self, cobras):
@@ -18,9 +19,17 @@ class Elefante:
             dy = self.y - cobra.y
             dist = ((dx**2 + dy**2)**0.5)
             if dist < self.radius:
+                cobra.abrir_boca()
                 Cobra.delete(cobra)
                 return True
         return False
+
+    def cobraComeu(self):
+        self.image = SNAKE_WHO_EAT_ELEPHANT_IMAGE
+        pygame.time.delay(300)
+
+    def getPosition(self):
+        return (self.x, self.y)
 
     @classmethod
     def listar(cls):

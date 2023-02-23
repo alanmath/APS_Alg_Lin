@@ -37,6 +37,8 @@ class Jogo:
         # Verificar colisão com o elefante
         for elefante in Elefante.lista:
             if elefante.verifica_colisao(Cobra.lista):
+                elefante.cobraComeu()
+                Elefante.delete_all()
                 # Incrementar a pontuação e avançar para a próxima fase
                 self.score += 1
                 self.phase += 1
@@ -44,7 +46,7 @@ class Jogo:
                 Cobra.delete_all()
                 for valores in p_fases[self.phase-1]:
                     Planeta(valores)
-                Elefante.delete_all()
+                
                 Elefante(e_fases[self.phase-1])
                 Wormhole.delete_all()
                 for valores in w_fases[self.phase-1]:
@@ -128,7 +130,8 @@ class Jogo:
             valores = [random.randint(0, WIDTH), random.randint(0, HEIGHT), random.randint(10, 50)]
             Planeta(valores)
         # generate the random values for the elephant
-        Elefante(random.randint(0, WIDTH), random.randint(0, HEIGHT))
+        posElefante = [random.randint(0, WIDTH), random.randint(0, HEIGHT)]
+        Elefante(posElefante)
         # generate the random values for the wormholes
         qtd_wormholes = random.choice([0, 2])
         for i in range(qtd_wormholes):

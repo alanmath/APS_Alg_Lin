@@ -11,7 +11,8 @@ class Cobra:
         self.vx = vx
         self.vy = vy
         self.rect = pygame.Rect(self.x, self.y, SNAKE_WIDTH, SNAKE_HEIGHT)
-        
+        self.image = pygame.Surface((10, 30))
+        self.image.fill(RED)  
         
         
         # verify if 
@@ -48,6 +49,10 @@ class Cobra:
         self.x = pos[0]
         self.y = pos[1]
         self.rect = pygame.Rect(self.x, self.y, SNAKE_WIDTH, SNAKE_HEIGHT)
+
+    def abrir_boca(self):
+        self.image = SNAKE_IMAGE_OPEN_MOUTH
+        self.rect = self.image.get_rect()
 
     @classmethod
     def draw(cls, screen):
