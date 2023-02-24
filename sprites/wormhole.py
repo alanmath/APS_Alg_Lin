@@ -11,16 +11,21 @@ class Wormhole:
         self.indice = indice_buraco_ligado
         Wormhole.lista.append(self)
 
+
+        # get the image of the wormhole
     def __init__(self, valores):
         self.pos = [valores[0], valores[1]]
         self.rect = pygame.Rect(valores[0], valores[1], WORMHOLE_WIDTH, WORMHOLE_HEIGHT)
         self.indice = valores[2]
         Wormhole.lista.append(self)
-        
+        self.wormhole = pygame.image.load("sprites/portal.png")
+
     @classmethod
     def draw(cls, screen):
         for wormhole in Wormhole.lista:
-            pygame.draw.rect(screen, (255, 255, 255), wormhole.rect)
+            #draw wormhole
+            screen.blit(wormhole.wormhole, (wormhole.pos[0], wormhole.pos[1]))
+
 
     @classmethod
     def delete_all(cls):

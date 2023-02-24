@@ -12,6 +12,9 @@ class Elefante:
         self.radius = ELEPHANT_RADIUS
         Elefante.lista.append(self)
 
+        # get the image of the elephant 
+        self.elefante = pygame.image.load("sprites/elephant.png")
+
     def verifica_colisao(self, cobras):
         for cobra in cobras:
             dx = self.x - cobra.x
@@ -29,8 +32,8 @@ class Elefante:
     @classmethod
     def draw(cls, screen):
         for elefante in Elefante.lista:
-            pygame.draw.circle(screen, ELEPHANT_COLOR, (elefante.x, elefante.y), elefante.radius)
-
+            #draw elefante
+            screen.blit(elefante.elefante, (elefante.x, elefante.y))
     @classmethod
     def delete(cls, elefante):
         Elefante.lista.remove(elefante)

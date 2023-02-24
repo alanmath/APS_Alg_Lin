@@ -12,6 +12,9 @@ class Cobra:
         self.vy = vy
         self.rect = pygame.Rect(self.x, self.y, SNAKE_WIDTH, SNAKE_HEIGHT)
         
+
+        # upload image of the snake named cobra.png
+        self.cobra_tiro = pygame.image.load("sprites/cobra.png")
         
         
         # verify if 
@@ -52,7 +55,8 @@ class Cobra:
     @classmethod
     def draw(cls, screen):
         for cobra in Cobra.lista:
-            pygame.draw.rect(screen, (255, 0, 0), cobra.rect)
+            #draw cobra_tiro
+            screen.blit(cobra.cobra_tiro, (cobra.x, cobra.y))
 
     @classmethod
     def delete(cls, cobra):
