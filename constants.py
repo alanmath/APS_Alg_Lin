@@ -43,6 +43,9 @@ SNAKE_WHO_EAT_ELEPHANT_IMAGE = pygame.image.load('sprites/snakehat_image.png')
 SNAKE_WHO_EAT_ELEPHANT_IMAGE = pygame.transform.scale(SNAKE_WHO_EAT_ELEPHANT_IMAGE, (ELEPHANT_RADIUS, ELEPHANT_RADIUS))
 
 
+##
+END_GAME_IMAGE = pygame.image.load('sprites/endgame.png')
+
 # Settings page
 WINDOW_SIZE = (800, 600)
 FPS = 60

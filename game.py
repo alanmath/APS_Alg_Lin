@@ -57,26 +57,31 @@ class Jogo:
         Wormhole.teletransport()
 
     def next_phase(self, elefante):
-        self.draw()
-        pygame.display.update()
-        pygame.time.delay(300)
-        Cobra.delete_all()
-        elefante.cobraComeu()
-        self.draw()
-        pygame.display.update()
-        pygame.time.delay(300)
-        self.score += 1
-        self.phase += 1
-        Planeta.delete_all()
-        for valores in p_fases[self.phase-1]:
-            Planeta(valores)
-        Elefante.delete_all()
-        Elefante(e_fases[self.phase-1])
-        Wormhole.delete_all()
-        for valores in w_fases[self.phase-1]:
-            Wormhole(valores)
+        if not (self.phase == 6):
+            self.draw()
+            pygame.display.update()
+            pygame.time.delay(300)
+            Cobra.delete_all()
+            elefante.cobraComeu()
+            self.draw()
+            pygame.display.update()
+            pygame.time.delay(300)
+            self.score += 1
+            self.phase += 1
+            Planeta.delete_all()
+            for valores in p_fases[self.phase-1]:
+                Planeta(valores)
+            Elefante.delete_all()
+            Elefante(e_fases[self.phase-1])
+            Wormhole.delete_all()
+            for valores in w_fases[self.phase-1]:
+                Wormhole(valores)
 
-        self.draw()
+            self.draw()
+        else:
+            self.screen.blit(END_GAME_IMAGE, (0, 0))
+
+        
         pygame.display.update()
 
     def draw(self):
@@ -122,7 +127,6 @@ class Jogo:
 
 
     def menu_screen(self):
-
 
         font = pygame.font.Font(None, 72)
         start_text = font.render("Start", True, WHITE)
