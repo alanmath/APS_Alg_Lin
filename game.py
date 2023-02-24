@@ -55,7 +55,7 @@ class Jogo:
         Cobra.delete_all()
         for valores in p_fases[self.phase-1]:
             Planeta(valores)
-        
+        Elefante.delete_all()
         Elefante(e_fases[self.phase-1])
         Wormhole.delete_all()
         for valores in w_fases[self.phase-1]:
