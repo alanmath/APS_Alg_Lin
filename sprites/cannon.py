@@ -29,6 +29,9 @@ class Canhao():
 
         # carregue a imagem principe
         self.prince_image = pygame.image.load("sprites/principe.png")
+
+        # carregue o som do canhão cannon_shot
+        self.cannon_shot = pygame.mixer.Sound("sprites/cannon_shot.mp3")
         
     
     def update_cannon_down(self):
@@ -51,7 +54,11 @@ class Canhao():
         self.speed[1] = force * math.sin(angle)*(-1)
         self.pulled_back = False
         Cobra(self.pos[0], self.pos[1], 10, vx=self.speed[0], vy=self.speed[1])
-
+        
+        # play the sound cannon_shot
+        
+        # play that sound
+        self.cannon_shot.play()
 
     def update_cannon_motion(self):
         self.mouse_pos = pygame.mouse.get_pos()

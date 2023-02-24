@@ -13,11 +13,15 @@ clock = pygame.time.Clock()
 #carregar imagens aqui
 frame_count = 0
 
-
+#take music on the folder sprites and load it on the pygame mixer, the music is back_sound
+pygame.mixer.music.load("sprites/back_sound.mp3")
+#play the music
         
 jogo = Jogo(screen)
 while True:
+    pygame.mixer.music.play(loops=-1)
     retorno_menu = jogo.menu_screen() 
+
     if retorno_menu == "start":
         jogo.start()
 
@@ -70,4 +74,6 @@ while True:
             pygame.display.update()
 
     elif retorno_menu == "settings":
-        print("settings")
+        jogo.settings_screen()
+
+        

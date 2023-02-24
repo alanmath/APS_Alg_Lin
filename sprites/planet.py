@@ -14,6 +14,8 @@ class Planeta(CorpoCeleste):
         super().__init__(valores[0], valores[1], valores[2])
         Planeta.lista.append(self)
         self.radius = RAIO_PLANETA
+        # load planet images
+        self.planeta = pygame.image.load("sprites/planet.png")
 
     def verifica_colisao(self, cobras):
         for cobra in cobras:
@@ -36,4 +38,6 @@ class Planeta(CorpoCeleste):
     @classmethod
     def draw(cls, screen):
         for planeta in Planeta.lista:
-            pygame.draw.circle(screen, (255, 255, 255), (planeta.x, planeta.y), planeta.radius)
+            #draw planet
+            screen.blit(planeta.planeta, (planeta.x, planeta.y))
+            

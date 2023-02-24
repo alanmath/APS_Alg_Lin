@@ -21,7 +21,14 @@ class Jogo:
 
         self.card_menu = pygame.image.load('sprites/card_menu.png')
 
+        #load instructions image
+        self.instructions = pygame.image.load('sprites/instrucoes.png')
 
+        #load space image
+        self.space_image = pygame.image.load('sprites/space_image.png')
+
+        #load button menu sound named button_menu
+        self.button_menu = pygame.mixer.Sound('sprites/button_menu.mp3')
 
     def start(self):
         for valores in p_fases[self.phase-1]:
@@ -61,8 +68,7 @@ class Jogo:
         Wormhole.teletransport()
 
     def draw(self):
-        self.screen.fill(BLACK)
-
+        self.screen.blit(self.space_image, (0, 0))
 
         
         Planeta.draw(self.screen)
@@ -123,14 +129,19 @@ class Jogo:
                 if event.type == pygame.MOUSEMOTION:
                     pos = pygame.mouse.get_pos()
                     if start_rect.collidepoint(pos):
+                        # carregar som button_menu
+                        self.button_menu.play()
+
                         start_text = font.render("Start", True, RED)
                     else:
                         start_text = font.render("Start", True, WHITE)
                     if settings_rect.collidepoint(pos):
+                        self.button_menu.play()
                         settings_text = font.render("Settings", True, RED)
                     else:
                         settings_text = font.render("Settings", True, WHITE)
                     if endless_rect.collidepoint(pos):
+                        self.button_menu.play()
                         endless_text = font.render("Endless Mode", True, RED)
                     else:
                         endless_text = font.render("Endless Mode", True, WHITE)
@@ -197,6 +208,47 @@ class Jogo:
         # Verificar colisão com o wormhole
         Wormhole.teletransport()
         
+
+
+
+
+
+    def settings_screen(self):
+        # only print the image on the sprites instrucoes as background and put a button to go back to the menu
+        self.screen.blit(self.instructions, [0, 0])
+        font = pygame.font.Font(None, 72)
+        back_text = font.render("Back", True, WHITE)
+        back_rect = back_text.get_rect(center=(WIDTH/2, 780))
+        while True:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+
+                # verificar se o rato está em cima de um botão e colocar a imagem card_menu por tras
+                if event.type == pygame.MOUSEMOTION:
+                    pos = pygame.mouse.get_pos()
+                    if back_rect.collidepoint(pos):
+                        back_text = font.render("Back", True, RED)
+                    else:
+                        back_text = font.render("Back", True, WHITE)
+                
+                if event.type == pygame.MOUSEBUTTONUP:
+                    pos = pygame.mouse.get_pos()
+                    if back_rect.collidepoint(pos):
+                        return "menu"
+            self.screen.blit(back_text, back_rect)
+            pygame.display.update()
+
+
+
+
+
+
+
+
+
+
+    
 
     # Define the settings page function
     def settings(self):  ## Revisar essa seção inteira ##
