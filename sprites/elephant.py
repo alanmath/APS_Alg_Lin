@@ -10,6 +10,7 @@ class Elefante:
         self.x = pos[0]
         self.y = pos[1]
         self.radius = ELEPHANT_RADIUS
+        self.image = ELEPHANT_IMAGE
         Elefante.lista.append(self)
 
         # get the image of the elephant 
@@ -21,9 +22,15 @@ class Elefante:
             dy = self.y - cobra.y
             dist = ((dx**2 + dy**2)**0.5)
             if dist < self.radius:
-                Cobra.delete(cobra)
+                cobra.abrir_boca()
                 return True
         return False
+
+    def cobraComeu(self):
+        self.image = SNAKE_WHO_EAT_ELEPHANT_IMAGE
+
+    def getPosition(self):
+        return (self.x, self.y)
 
     @classmethod
     def listar(cls):
@@ -32,8 +39,9 @@ class Elefante:
     @classmethod
     def draw(cls, screen):
         for elefante in Elefante.lista:
-            #draw elefante
-            screen.blit(elefante.elefante, (elefante.x, elefante.y))
+            # pygame.draw.circle(screen, ELEPHANT_COLOR, (elefante.x, elefante.y), elefante.radius)
+            screen.blit(elefante.image, (elefante.x, elefante.y))
+            
     @classmethod
     def delete(cls, elefante):
         Elefante.lista.remove(elefante)
