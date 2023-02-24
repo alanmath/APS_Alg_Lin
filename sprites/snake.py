@@ -11,10 +11,7 @@ class Cobra:
         self.vx = vx
         self.vy = vy
         self.rect = pygame.Rect(self.x, self.y, SNAKE_WIDTH, SNAKE_HEIGHT)
-        
-
-        # upload image of the snake named cobra.png
-        self.cobra_tiro = pygame.image.load("sprites/cobra.png")
+        self.image = SNAKE_IMAGE
         
         
         # verify if 
@@ -52,12 +49,16 @@ class Cobra:
         self.y = pos[1]
         self.rect = pygame.Rect(self.x, self.y, SNAKE_WIDTH, SNAKE_HEIGHT)
 
+    def abrir_boca(self):
+        self.image = SNAKE_IMAGE_OPEN_MOUTH
+        self.rect = self.image.get_rect()
+
     @classmethod
     def draw(cls, screen):
         for cobra in Cobra.lista:
-            #draw cobra_tiro
-            screen.blit(cobra.cobra_tiro, (cobra.x, cobra.y))
-
+            # pygame.draw.rect(screen, (255, 0, 0), cobra.rect)
+            screen.blit(cobra.image, (cobra.x, cobra.y))
+            
     @classmethod
     def delete(cls, cobra):
         Cobra.lista.remove(cobra)
