@@ -37,23 +37,32 @@ class Jogo:
         # Verificar colisão com o elefante
         for elefante in Elefante.lista:
             if elefante.verifica_colisao(Cobra.lista):
-                elefante.cobraComeu()
-                Elefante.delete_all()
-                # Incrementar a pontuação e avançar para a próxima fase
-                self.score += 1
-                self.phase += 1
-                Planeta.delete_all()
-                Cobra.delete_all()
-                for valores in p_fases[self.phase-1]:
-                    Planeta(valores)
-                
-                Elefante(e_fases[self.phase-1])
-                Wormhole.delete_all()
-                for valores in w_fases[self.phase-1]:
-                    Wormhole(valores)  
+                self.next_phase(elefante)
         
         # Verificar colisão com o wormhole
         Wormhole.teletransport()
+
+    def next_phase(self, elefante):
+        self.draw()
+        pygame.display.update()
+        pygame.time.delay(300)
+        elefante.cobraComeu()
+        pygame.display.update()
+        pygame.time.delay(300)
+        self.score += 1
+        self.phase += 1
+        Planeta.delete_all()
+        Cobra.delete_all()
+        for valores in p_fases[self.phase-1]:
+            Planeta(valores)
+        
+        Elefante(e_fases[self.phase-1])
+        Wormhole.delete_all()
+        for valores in w_fases[self.phase-1]:
+            Wormhole(valores)
+
+        self.draw()
+        pygame.display.update()
 
     def draw(self):
         self.screen.fill(BLACK)

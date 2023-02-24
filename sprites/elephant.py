@@ -14,19 +14,17 @@ class Elefante:
         Elefante.lista.append(self)
 
     def verifica_colisao(self, cobras):
-        for cobra in cobras:
+        for cobra in cobraspygame.time.delay(300):
             dx = self.x - cobra.x
             dy = self.y - cobra.y
             dist = ((dx**2 + dy**2)**0.5)
             if dist < self.radius:
                 cobra.abrir_boca()
-                Cobra.delete(cobra)
                 return True
         return False
 
     def cobraComeu(self):
         self.image = SNAKE_WHO_EAT_ELEPHANT_IMAGE
-        pygame.time.delay(300)
 
     def getPosition(self):
         return (self.x, self.y)
@@ -38,7 +36,8 @@ class Elefante:
     @classmethod
     def draw(cls, screen):
         for elefante in Elefante.lista:
-            pygame.draw.circle(screen, ELEPHANT_COLOR, (elefante.x, elefante.y), elefante.radius)
+            # pygame.draw.circle(screen, ELEPHANT_COLOR, (elefante.x, elefante.y), elefante.radius)
+            screen.blit(elefante.image, (elefante.x, elefante.y))
 
     @classmethod
     def delete(cls, elefante):
