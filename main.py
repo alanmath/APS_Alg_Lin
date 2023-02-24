@@ -11,6 +11,8 @@ clock = pygame.time.Clock()
 
 #carregar algumas imagens aqui
 #carregar imagens aqui
+frame_count = 0
+
 
         
 jogo = Jogo(screen)
@@ -38,6 +40,7 @@ while True:
             # Desenhar linha de força
             jogo.canhao.pulled(screen)
             
+
             if Core.update_vidas():
                 jogo.end_game_screen()
 

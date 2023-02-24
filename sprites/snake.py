@@ -11,8 +11,7 @@ class Cobra:
         self.vx = vx
         self.vy = vy
         self.rect = pygame.Rect(self.x, self.y, SNAKE_WIDTH, SNAKE_HEIGHT)
-        self.image = pygame.Surface((10, 30))
-        self.image.fill(RED)  
+        self.image = SNAKE_IMAGE
         
         
         # verify if 

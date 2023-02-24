@@ -13,6 +13,9 @@ class Elefante:
         self.image = ELEPHANT_IMAGE
         Elefante.lista.append(self)
 
+        # get the image of the elephant 
+        self.elefante = pygame.image.load("sprites/elephant.png")
+
     def verifica_colisao(self, cobras):
         for cobra in cobras:
             dx = self.x - cobra.x

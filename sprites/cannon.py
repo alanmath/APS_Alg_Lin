@@ -25,6 +25,11 @@ class Canhao():
         # Cria uma linha horizontal
         self.line_image = pygame.Surface((self.line_length, self.line_width))
         self.line_image.fill(self.line_color)
+
+
+        # carregue a imagem principe
+        self.prince_image = pygame.image.load("sprites/principe.png")
+        
     
     def update_cannon_down(self):
         # verify if mouse button was pressed
@@ -62,5 +67,5 @@ class Canhao():
 
     def draw(self, screen):
 
-        # blit an image of the image on the screen on the position 50, 500
-        screen.blit(self.image, self.pos)
+        # desenhe o objeto principe.png na tela
+        screen.blit(self.prince_image, (self.pos[0]-60, self.pos[1]-20))

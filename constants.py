@@ -23,12 +23,12 @@ RAIO_PLANETA = 20
 
 ## snake
 SNAKE_COLOR = RED
-SNAKE_WIDTH = 10
-SNAKE_HEIGHT = 10
+SNAKE_WIDTH = 20
+SNAKE_HEIGHT = 20
 
 ## elephant
 ELEPHANT_COLOR = YELLOW
-ELEPHANT_RADIUS = 25
+ELEPHANT_RADIUS = 35
 
 ## elephant images
 ELEPHANT_IMAGE = pygame.image.load('images/elephant.png')

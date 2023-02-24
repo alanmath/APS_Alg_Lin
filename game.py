@@ -8,13 +8,20 @@ from fases import *
 from sprites.cannon import Canhao
 from sprites.wormhole import Wormhole
 from sprites.core import Core
-
 class Jogo:
     def __init__(self, screen):
         self.score = 0
         self.phase = 1
         self.canhao = Canhao(120, HEIGHT-400)
         self.screen = screen
+
+
+
+        self.background_image = pygame.image.load('sprites/background_menu.png')
+
+        self.card_menu = pygame.image.load('sprites/card_menu.png')
+
+
 
     def start(self):
         for valores in p_fases[self.phase-1]:
@@ -66,6 +73,9 @@ class Jogo:
 
     def draw(self):
         self.screen.fill(BLACK)
+
+
+        
         Planeta.draw(self.screen)
         Elefante.draw(self.screen)
         Cobra.draw(self.screen)
@@ -105,18 +115,38 @@ class Jogo:
 
 
     def menu_screen(self):
-        font = pygame.font.Font(None, 36)
+
+
+        font = pygame.font.Font(None, 72)
         start_text = font.render("Start", True, WHITE)
         settings_text = font.render("Settings", True, WHITE)
         endless_text = font.render("Endless Mode", True, WHITE)
-        start_rect = start_text.get_rect(center=(WIDTH/2, 200))
-        settings_rect = settings_text.get_rect(center=(WIDTH/2, 250))
-        endless_rect = endless_text.get_rect(center=(WIDTH/2, 300))
+        start_rect = start_text.get_rect(center=(WIDTH/2, 250))
+        settings_rect = settings_text.get_rect(center=(WIDTH/2, 350))
+        endless_rect = endless_text.get_rect(center=(WIDTH/2, 450))
 
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
+
+                # verificar se o rato está em cima de um botão e colocar a imagem card_menu por tras
+                if event.type == pygame.MOUSEMOTION:
+                    pos = pygame.mouse.get_pos()
+                    if start_rect.collidepoint(pos):
+                        start_text = font.render("Start", True, RED)
+                    else:
+                        start_text = font.render("Start", True, WHITE)
+                    if settings_rect.collidepoint(pos):
+                        settings_text = font.render("Settings", True, RED)
+                    else:
+                        settings_text = font.render("Settings", True, WHITE)
+                    if endless_rect.collidepoint(pos):
+                        endless_text = font.render("Endless Mode", True, RED)
+                    else:
+                        endless_text = font.render("Endless Mode", True, WHITE)
+
+                
                 if event.type == pygame.MOUSEBUTTONUP:
                     pos = pygame.mouse.get_pos()
                     if start_rect.collidepoint(pos):
@@ -126,7 +156,11 @@ class Jogo:
                     elif endless_rect.collidepoint(pos):
                         return "endless"
             
-            self.screen.fill(BLACK) 
+            
+             # carregar background   
+            self.screen.blit(self.background_image, [0, 0])
+
+
             self.screen.blit(start_text, start_rect)
             self.screen.blit(settings_text, settings_rect)
             self.screen.blit(endless_text, endless_rect)
