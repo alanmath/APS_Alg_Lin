@@ -31,15 +31,15 @@ ELEPHANT_COLOR = YELLOW
 ELEPHANT_RADIUS = 35
 
 ## elephant images
-ELEPHANT_IMAGE = pygame.image.load('images/elephant.png')
+ELEPHANT_IMAGE = pygame.image.load('sprites/elephant.png')
 ELEPHANT_IMAGE = pygame.transform.scale(ELEPHANT_IMAGE, (ELEPHANT_RADIUS*2, ELEPHANT_RADIUS*2))
 
 ## snake images
-SNAKE_IMAGE = pygame.image.load('images/snake.jpeg')
+SNAKE_IMAGE = pygame.image.load('sprites/cobra.png')
 SNAKE_IMAGE = pygame.transform.scale(SNAKE_IMAGE, (SNAKE_WIDTH, SNAKE_HEIGHT))
 SNAKE_IMAGE_OPEN_MOUTH = pygame.image.load('images/snake_open_mouth.jpeg')
 SNAKE_IMAGE_OPEN_MOUTH = pygame.transform.scale(SNAKE_IMAGE_OPEN_MOUTH, (SNAKE_WIDTH, SNAKE_HEIGHT))
-SNAKE_WHO_EAT_ELEPHANT_IMAGE = pygame.image.load('images/snake_who_eat_elephant.png')
+SNAKE_WHO_EAT_ELEPHANT_IMAGE = pygame.image.load('sprites/snake_who_eat_elephant.jpg')
 SNAKE_WHO_EAT_ELEPHANT_IMAGE = pygame.transform.scale(SNAKE_WHO_EAT_ELEPHANT_IMAGE, (ELEPHANT_RADIUS, ELEPHANT_RADIUS))
 
 

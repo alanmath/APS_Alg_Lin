@@ -53,13 +53,14 @@ class Jogo:
         self.draw()
         pygame.display.update()
         pygame.time.delay(300)
+        Cobra.delete_all()
         elefante.cobraComeu()
+        self.draw()
         pygame.display.update()
         pygame.time.delay(300)
         self.score += 1
         self.phase += 1
         Planeta.delete_all()
-        Cobra.delete_all()
         for valores in p_fases[self.phase-1]:
             Planeta(valores)
         Elefante.delete_all()
