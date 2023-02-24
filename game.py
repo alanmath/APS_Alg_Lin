@@ -126,7 +126,7 @@ class Jogo:
 
         font = pygame.font.Font(None, 72)
         start_text = font.render("Start", True, WHITE)
-        settings_text = font.render("Settings", True, WHITE)
+        settings_text = font.render("Instruções", True, WHITE)
         endless_text = font.render("Endless Mode", True, WHITE)
         start_rect = start_text.get_rect(center=(WIDTH/2, 250))
         settings_rect = settings_text.get_rect(center=(WIDTH/2, 350))
@@ -149,9 +149,9 @@ class Jogo:
                         start_text = font.render("Start", True, WHITE)
                     if settings_rect.collidepoint(pos):
                         self.button_menu.play()
-                        settings_text = font.render("Settings", True, RED)
+                        settings_text = font.render("Instruções", True, RED)
                     else:
-                        settings_text = font.render("Settings", True, WHITE)
+                        settings_text = font.render("Instruções", True, WHITE)
                     if endless_rect.collidepoint(pos):
                         self.button_menu.play()
                         endless_text = font.render("Endless Mode", True, RED)

@@ -25,7 +25,7 @@ class Core:
                 #delete the snake
                 Cobra.delete(snake)
                 #add 1 to the self.conta_vidas
-                #Core.conta_vidas += 1
+                Core.conta_vidas += 1
                 #verify if the self.conta_vidas is 5
                 if Core.conta_vidas == 5:
                     return True
@@ -34,8 +34,7 @@ class Core:
 
     @classmethod           
     def incrementa_vidas(self):
-        #self.conta_vidas += 1   
-        pass  
+        self.conta_vidas += 1
 
     @classmethod
     def draw(cls,screen):
