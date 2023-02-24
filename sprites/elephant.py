@@ -14,7 +14,7 @@ class Elefante:
         Elefante.lista.append(self)
 
     def verifica_colisao(self, cobras):
-        for cobra in cobraspygame.time.delay(300):
+        for cobra in cobras:
             dx = self.x - cobra.x
             dy = self.y - cobra.y
             dist = ((dx**2 + dy**2)**0.5)
@@ -38,7 +38,7 @@ class Elefante:
         for elefante in Elefante.lista:
             # pygame.draw.circle(screen, ELEPHANT_COLOR, (elefante.x, elefante.y), elefante.radius)
             screen.blit(elefante.image, (elefante.x, elefante.y))
-
+            
     @classmethod
     def delete(cls, elefante):
         Elefante.lista.remove(elefante)
