@@ -32,6 +32,6 @@ class Wormhole:
             for cobra in Cobra.lista:
                 if wormhole.rect.colliderect(cobra.rect):
                     pos = Wormhole.lista[wormhole.indice].pos
-                    pos[0] += (WORMHOLE_WIDTH + SNAKE_WIDTH + 10) / 2
+                    pos[0] += (WORMHOLE_WIDTH + SNAKE_WIDTH + 4) / 2
                     # pos[1] += (WORMHOLE_HEIGHT + SNAKE_HEIGHT + 10) / 2
                     cobra.transportar(pos)
