@@ -12,7 +12,7 @@ class Jogo:
     def __init__(self, screen):
         self.score = 0
         self.phase = 1
-        self.canhao = Canhao(30, HEIGHT-40)
+        self.canhao = Canhao(120, HEIGHT-400)
         self.screen = screen
 
 
@@ -26,13 +26,20 @@ class Jogo:
     def start(self):
         for valores in p_fases[self.phase-1]:
             Planeta(valores)
-        Elefante(random.randint(0, WIDTH), random.randint(0, HEIGHT))
+        
+        Elefante(e_fases[self.phase-1])
         for valores in w_fases[self.phase-1]:
             Wormhole(valores)
     
     def atualiza_jogo(self, delta_t):
         for cobra in Cobra.lista:
             cobra.atualiza_velocidade_posicao(Planeta.lista, delta_t)
+        for planeta in Planeta.lista:
+            cobra_ = planeta.verifica_colisao(Cobra.lista)
+            if cobra_ and len(Cobra.lista)>0:
+                Cobra.delete(cobra_)
+                Core.incrementa_vidas()
+
         
         # Verificar colisão com o elefante
         for elefante in Elefante.lista:
@@ -41,10 +48,11 @@ class Jogo:
                 self.score += 1
                 self.phase += 1
                 Planeta.delete_all()
+                Cobra.delete_all()
                 for valores in p_fases[self.phase-1]:
                     Planeta(valores)
                 Elefante.delete_all()
-                Elefante(random.randint(0, WIDTH), random.randint(0, HEIGHT))
+                Elefante(e_fases[self.phase-1])
                 Wormhole.delete_all()
                 for valores in w_fases[self.phase-1]:
                     Wormhole(valores)  

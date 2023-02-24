@@ -6,9 +6,9 @@ import math
 
 class Canhao():
     def __init__(self, x, y):
-        super().__init__()
         self.image = pygame.Surface((20, 30))
         self.image.fill(GREEN)
+        self.pos = (x, y)
 
         self.rect = self.image.get_rect()
         self.shoot = False
@@ -45,7 +45,7 @@ class Canhao():
         self.speed[0] = force * math.cos(angle)*(-1)
         self.speed[1] = force * math.sin(angle)*(-1)
         self.pulled_back = False
-        Cobra(50, 500, 10, vx=self.speed[0], vy=self.speed[1])
+        Cobra(self.pos[0], self.pos[1], 10, vx=self.speed[0], vy=self.speed[1])
 
 
     def update_cannon_motion(self):
@@ -57,11 +57,10 @@ class Canhao():
         if self.pulled_back:
             mouse_pos = pygame.mouse.get_pos()
             distance_to_color = min(((mouse_pos[0] - self.start_pos[0])**2 + (mouse_pos[1] - self.start_pos[1])**2)**0.5,255)
-            print(distance_to_color, "distance_to_color uuuuuuuuuu")
             pygame.draw.line(screen, (0+distance_to_color, 255-distance_to_color, 0), self.start_pos, mouse_pos, 2)
             
 
     def draw(self, screen):
 
         # blit an image of the image on the screen on the position 50, 500
-        screen.blit(self.image, (50, 500))
+        screen.blit(self.image, self.pos)

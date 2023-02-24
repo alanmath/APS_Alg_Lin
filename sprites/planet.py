@@ -1,16 +1,29 @@
 from sprites.corpoCeleste import CorpoCeleste
 import pygame
+from constants import *
 
 class Planeta(CorpoCeleste):
     lista = []
 
-    def __init__(self, x, y, massa):
-        super().__init__(x, y, massa)
-        Planeta.lista.append(self)
+    # def __init__(self, x, y, massa):
+    #     super().__init__(x, y, massa)
+    #     self.radius = 20
+    #     Planeta.lista.append(self)
 
     def __init__(self, valores):
         super().__init__(valores[0], valores[1], valores[2])
         Planeta.lista.append(self)
+        self.radius = RAIO_PLANETA
+
+    def verifica_colisao(self, cobras):
+        for cobra in cobras:
+            dx = self.x - cobra.x
+            dy = self.y - cobra.y
+            dist = ((dx**2 + dy**2)**0.5)
+            if dist < self.radius:
+                return cobra
+        return None
+
         
     @classmethod
     def listar(cls):
@@ -23,4 +36,4 @@ class Planeta(CorpoCeleste):
     @classmethod
     def draw(cls, screen):
         for planeta in Planeta.lista:
-            pygame.draw.circle(screen, (255, 255, 255), (planeta.x, planeta.y), 10)
+            pygame.draw.circle(screen, (255, 255, 255), (planeta.x, planeta.y), planeta.radius)

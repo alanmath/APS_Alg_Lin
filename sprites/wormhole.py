@@ -6,13 +6,13 @@ class Wormhole:
     lista = []
 
     def __init__(self, x, y, indice_buraco_ligado):
-        self.pos = (x, y)
+        self.pos = [x, y]
         self.rect = pygame.Rect(x, y, WORMHOLE_WIDTH, WORMHOLE_HEIGHT)
         self.indice = indice_buraco_ligado
         Wormhole.lista.append(self)
 
     def __init__(self, valores):
-        self.pos = (valores[0], valores[1])
+        self.pos = [valores[0], valores[1]]
         self.rect = pygame.Rect(valores[0], valores[1], WORMHOLE_WIDTH, WORMHOLE_HEIGHT)
         self.indice = valores[2]
         Wormhole.lista.append(self)
@@ -31,4 +31,7 @@ class Wormhole:
         for wormhole in Wormhole.lista:
             for cobra in Cobra.lista:
                 if wormhole.rect.colliderect(cobra.rect):
-                    cobra.transportar(Wormhole.lista[wormhole.indice].pos)
+                    pos = Wormhole.lista[wormhole.indice].pos
+                    pos[0] += (WORMHOLE_WIDTH + SNAKE_WIDTH + 10) / 2
+                    # pos[1] += (WORMHOLE_HEIGHT + SNAKE_HEIGHT + 10) / 2
+                    cobra.transportar(pos)

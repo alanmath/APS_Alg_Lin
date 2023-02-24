@@ -14,8 +14,6 @@ clock = pygame.time.Clock()
 frame_count = 0
 
 
-
-
         
 jogo = Jogo(screen)
 while True:
@@ -28,7 +26,6 @@ while True:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
-            # Atualizar o jogo
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     jogo.canhao.update_cannon_down()
                 elif event.type == pygame.MOUSEBUTTONUP:
