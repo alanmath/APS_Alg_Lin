@@ -15,6 +15,9 @@ class Jogo:
         self.canhao = Canhao(120, HEIGHT-400)
         self.screen = screen
 
+        #load game over screen
+        self.game_over = pygame.image.load('sprites/game_over.png')
+
 
 
         self.background_image = pygame.image.load('sprites/background_menu.png')
@@ -79,7 +82,9 @@ class Jogo:
 
             self.draw()
         else:
-            self.screen.blit(END_GAME_IMAGE, (0, 0))
+            while True:
+                self.screen.blit(END_GAME_IMAGE, (0, 0))
+                pygame.display.update()
 
         
         pygame.display.update()
@@ -103,27 +108,18 @@ class Jogo:
 
     def end_game_screen(self):
         font = pygame.font.Font(None, 36)
-        text_lose = font.render("Game Over", True, WHITE)
         text_win = font.render("You Win", True, WHITE)
         
         text_rect = text_win.get_rect(center=(WIDTH/2, 200))
         
-        if Core.conta_vidas <5:
-            while True:
-                for event in pygame.event.get():
-                    if event.type == pygame.QUIT:
-                        pygame.quit()
-                self.screen.fill(BLACK)
-                self.screen.blit(text_win, text_rect)
-                pygame.display.update()
-        else:
-            while True:
-                for event in pygame.event.get():
-                    if event.type == pygame.QUIT:
-                        pygame.quit()
-                self.screen.fill(BLACK)
-                self.screen.blit(text_lose, text_rect)
-                pygame.display.update()
+
+        while True:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                            # load game over screen
+            self.screen.blit(self.game_over, (0, 0))
+            pygame.display.update()
 
 
     def menu_screen(self):

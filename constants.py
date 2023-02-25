@@ -22,8 +22,8 @@ RAIO_PLANETA = 22
 
 ## snake
 SNAKE_COLOR = RED
-SNAKE_WIDTH = 20
-SNAKE_HEIGHT = 20
+SNAKE_WIDTH = 30
+SNAKE_HEIGHT = 30
 
 ## elephant
 ELEPHANT_COLOR = YELLOW
@@ -37,7 +37,7 @@ ELEPHANT_IMAGE = pygame.transform.scale(ELEPHANT_IMAGE, (ELEPHANT_RADIUS*2, ELEP
 SNAKE_IMAGE = pygame.image.load('sprites/cobra.png')
 SNAKE_IMAGE = pygame.transform.scale(SNAKE_IMAGE, (SNAKE_WIDTH, SNAKE_HEIGHT))
 SNAKE_IMAGE_OPEN_MOUTH = pygame.image.load('sprites/mouth_snake.png')
-SNAKE_IMAGE_OPEN_MOUTH = pygame.transform.scale(SNAKE_IMAGE_OPEN_MOUTH, (SNAKE_WIDTH*3, SNAKE_HEIGHT*3))
+SNAKE_IMAGE_OPEN_MOUTH = pygame.transform.scale(SNAKE_IMAGE_OPEN_MOUTH, (SNAKE_WIDTH*2, SNAKE_HEIGHT*2))
 SNAKE_WHO_EAT_ELEPHANT_IMAGE = pygame.image.load('sprites/snakehat_image.png')
 SNAKE_WHO_EAT_ELEPHANT_IMAGE = pygame.transform.scale(SNAKE_WHO_EAT_ELEPHANT_IMAGE, (ELEPHANT_RADIUS*3, ELEPHANT_RADIUS*3))
 
