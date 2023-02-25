@@ -31,3 +31,7 @@ Além disso, o jogo inclui buracos de minhoca, alteram a posição da cobra para
 ***Créditos***
 
 Este jogo foi desenvolvido por Alan Matheus e Esdras Gomes. O modelo físico foi baseado em conceitos de física clássica e matemática. A imagem do elefante comendo a cobra é uma referência à história "O Pequeno Príncipe", de Antoine de Saint-Exupéry. Como na história, a cobra neste jogo é capaz de superar obstáculos aparentemente insuperáveis e até mesmo devorar um elefante. "O essencial é invisível aos olhos", mas neste jogo a precisão matemática e a estratégia são essenciais para atingir o objetivo.
+
+
+![gif_jogo](https://user-images.githubusercontent.com/59699344/221325796-8fd96b86-6dfb-47c9-b95d-80f91445589c.gif)
+
