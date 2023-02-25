@@ -204,28 +204,38 @@ class Jogo:
         # Verificar colisão com o elefante
         for elefante in Elefante.lista:
             if elefante.verifica_colisao(Cobra.lista):
-                # Incrementar a pontuação e avançar para a próxima fase
-                self.score += 1
-                self.phase += 1
-                Planeta.delete_all()
-                # generate the random values for the planets
-                qtd_planetas = random.randint(2, 5)
-                for i in range(qtd_planetas):
-                    valores = [random.randint(0, WIDTH), random.randint(0, HEIGHT), random.randint(10, 50000000)]
-                    Planeta(valores)
-                Elefante.delete_all()
-                Elefante(random.randint(0, WIDTH), random.randint(0, HEIGHT))
-                qtd_wormholes = random.choice([0, 2])
-                for i in range(qtd_wormholes):
-                    valores = [random.randint(0, WIDTH), random.randint(0, HEIGHT), (i+1)%2]
-                    Wormhole(valores)
-                Wormhole.delete_all()
+                self.next_phase_endless(elefante)
+                break
                 
         
         # Verificar colisão com o wormhole
         Wormhole.teletransport()
         
+    def next_phase_endless(self, elefante):
 
+        self.draw()
+        pygame.display.update()
+        pygame.time.delay(300)
+        Cobra.delete_all()
+        elefante.cobraComeu()
+        self.draw()
+        pygame.display.update()
+        pygame.time.delay(300)
+        self.score += 1
+        self.phase += 1
+        Planeta.delete_all()
+        # generate the random values for the planets
+        qtd_planetas = random.randint(2, 5)
+        for i in range(qtd_planetas):
+            valores = [random.randint(0, WIDTH), random.randint(0, HEIGHT), random.randint(10, 50000000)]
+            Planeta(valores)
+        Elefante.delete_all()
+        Elefante((random.randint(0, WIDTH), random.randint(0, HEIGHT)))
+        qtd_wormholes = random.choice([0, 2])
+        for i in range(qtd_wormholes):
+            valores = [random.randint(0, WIDTH), random.randint(0, HEIGHT), (i+1)%2]
+            Wormhole(valores)
+        Wormhole.delete_all()
 
 
 
