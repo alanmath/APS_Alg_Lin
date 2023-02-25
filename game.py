@@ -137,7 +137,6 @@ class Jogo:
                 if event.type == pygame.QUIT:
                     pygame.quit()
 
-                # verificar se o rato está em cima de um botão e colocar a imagem card_menu por tras
                 if event.type == pygame.MOUSEMOTION:
                     pos = pygame.mouse.get_pos()
                     if start_rect.collidepoint(pos):
@@ -247,7 +246,6 @@ class Jogo:
                 if event.type == pygame.QUIT:
                     pygame.quit()
 
-                # verificar se o rato está em cima de um botão e colocar a imagem card_menu por tras
                 if event.type == pygame.MOUSEMOTION:
                     pos = pygame.mouse.get_pos()
                     if back_rect.collidepoint(pos):
