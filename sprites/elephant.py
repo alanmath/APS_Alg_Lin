@@ -40,7 +40,7 @@ class Elefante:
     def draw(cls, screen):
         for elefante in Elefante.lista:
             # pygame.draw.circle(screen, ELEPHANT_COLOR, (elefante.x, elefante.y), elefante.radius)
-            screen.blit(elefante.image, (elefante.x, elefante.y))
+            screen.blit(elefante.image, (elefante.x - ELEPHANT_RADIUS, elefante.y - ELEPHANT_RADIUS))
             
     @classmethod
     def delete(cls, elefante):
