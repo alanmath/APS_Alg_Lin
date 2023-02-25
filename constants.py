@@ -38,9 +38,9 @@ ELEPHANT_IMAGE = pygame.transform.scale(ELEPHANT_IMAGE, (ELEPHANT_RADIUS*2, ELEP
 SNAKE_IMAGE = pygame.image.load('sprites/cobra.png')
 SNAKE_IMAGE = pygame.transform.scale(SNAKE_IMAGE, (SNAKE_WIDTH, SNAKE_HEIGHT))
 SNAKE_IMAGE_OPEN_MOUTH = pygame.image.load('sprites/mouth_snake.png')
-SNAKE_IMAGE_OPEN_MOUTH = pygame.transform.scale(SNAKE_IMAGE_OPEN_MOUTH, (SNAKE_WIDTH, SNAKE_HEIGHT))
-SNAKE_WHO_EAT_ELEPHANT_IMAGE = pygame.image.load('sprites/snake_who_eat_elephant.jpg')
-SNAKE_WHO_EAT_ELEPHANT_IMAGE = pygame.transform.scale(SNAKE_WHO_EAT_ELEPHANT_IMAGE, (ELEPHANT_RADIUS, ELEPHANT_RADIUS))
+SNAKE_IMAGE_OPEN_MOUTH = pygame.transform.scale(SNAKE_IMAGE_OPEN_MOUTH, (SNAKE_WIDTH*3, SNAKE_HEIGHT*3))
+SNAKE_WHO_EAT_ELEPHANT_IMAGE = pygame.image.load('sprites/snakehat_image.png')
+SNAKE_WHO_EAT_ELEPHANT_IMAGE = pygame.transform.scale(SNAKE_WHO_EAT_ELEPHANT_IMAGE, (ELEPHANT_RADIUS*3, ELEPHANT_RADIUS*3))
 
 
 # Settings page
