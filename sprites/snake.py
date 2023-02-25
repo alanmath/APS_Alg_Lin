@@ -56,7 +56,6 @@ class Cobra:
     @classmethod
     def draw(cls, screen):
         for cobra in Cobra.lista:
-            # pygame.draw.rect(screen, (255, 0, 0), cobra.rect)
             screen.blit(cobra.image, (cobra.x, cobra.y))
             
     @classmethod

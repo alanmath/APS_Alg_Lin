@@ -18,8 +18,7 @@ WORMHOLE_WIDTH = 10
 WORMHOLE_COLOR = BLUE
 
 ## PLANETA
-RAIO_PLANETA = 20
-
+RAIO_PLANETA = 22
 
 ## snake
 SNAKE_COLOR = RED
@@ -42,6 +41,9 @@ SNAKE_IMAGE_OPEN_MOUTH = pygame.transform.scale(SNAKE_IMAGE_OPEN_MOUTH, (SNAKE_W
 SNAKE_WHO_EAT_ELEPHANT_IMAGE = pygame.image.load('sprites/snakehat_image.png')
 SNAKE_WHO_EAT_ELEPHANT_IMAGE = pygame.transform.scale(SNAKE_WHO_EAT_ELEPHANT_IMAGE, (ELEPHANT_RADIUS*3, ELEPHANT_RADIUS*3))
 
+
+##
+END_GAME_IMAGE = pygame.image.load('sprites/endgame.png')
 
 # Settings page
 WINDOW_SIZE = (800, 600)
